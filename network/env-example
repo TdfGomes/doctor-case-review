@@ -1,0 +1,8 @@
+MONGO_INITDB_ROOT_USERNAME=rootadmin
+MONGO_INITDB_ROOT_PASSWORD=rootpassword
+DB_NAME=edirect
+DB_USER=myuser
+DB_PASS=superstrongpass123
+DB_HOST=database
+DB_PORT=27017
+JWT_SECRET=supertokensecret
