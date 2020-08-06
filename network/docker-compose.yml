@@ -31,28 +31,28 @@ services:
       DB_USER: "$DB_USER"
       DB_PASS: "$DB_PASS"
       DB_HOST: "$DB_HOST"
-  # api:
-  #   build:
-  #     context: ../api
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ../api/src/:/home/node/api/src
-  #   links:
-  #     - database:mongo
-  #   depends_on:
-  #     - database
-  #   env_file: .env
-  #   environment:
-  #       NODE_ENV: development
-  #       DB_NAME: "$DB_NAME"
-  #       DB_USER: "$DB_USER"
-  #       DB_PASS: "$DB_PASS"
-  #       DB_HOST: "$DB_HOST"
-  #       DB_PORT: "$DB_PORT"
-  #       JWT_SECRET: "$JWT_SECRET"
-  #       WAIT_HOSTS: database:27017
-  #   ports:
-  #       - 8080:8080
+  api:
+    build:
+      context: ../api
+      dockerfile: Dockerfile
+    volumes:
+      - ../api/src/:/home/node/api/src
+    links:
+      - database:mongo
+    depends_on:
+      - database
+    env_file: .env
+    environment:
+        NODE_ENV: development
+        DB_NAME: "$DB_NAME"
+        DB_USER: "$DB_USER"
+        DB_PASS: "$DB_PASS"
+        DB_HOST: "$DB_HOST"
+        DB_PORT: "$DB_PORT"
+        JWT_SECRET: "$JWT_SECRET"
+        WAIT_HOSTS: database:27017
+    ports:
+        - 8080:8080
   # app:
   #   stdin_open: true
   #   tty: true
