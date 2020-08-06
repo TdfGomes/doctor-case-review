@@ -1,0 +1,25 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "api for heathcare",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm audit fix",
+    "start": "pm2 start index.js --watch --time && pm2 logs",
+    "stop": "pm2 stop all"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "Tiago Gomes",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.5",
+    "morgan": "^1.10.0"
+  }
+}
