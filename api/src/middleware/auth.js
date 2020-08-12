@@ -1,28 +1,18 @@
-const jwt = require("jsonwebtoken");
-const { User } = require("../models");
-const secret = process.env.JWT_SECRET;
+const jwt = require('jsonwebtoken')
+const secret = process.env.JWT_SECRET
 
 module.exports = {
-  authenticated: async (ctx, next) => {
-    if (!ctx.headers.authorization) ctx.throw(403, "No token.");
+  authenticateToken: (req, res, next) => {
+    // Gather the jwt access token from the request header
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    if (token == null) return res.sendStatus(401) // if there isn't any token
 
-    const token = ctx.headers.authorization.split(" ")[1];
-
-    try {
-      ctx.request.jwtPayload = jwt.verify(token, secret);
-    } catch (err) {
-      ctx.throw(err.status || 403, err.text);
-    }
-
-    await next();
+    jwt.verify(token, secret, (err, user) => {
+      console.log(err)
+      if (err) return res.sendStatus(403)
+      req.user = user
+      next() // pass the execution off to whatever request the client intended
+    })
   },
-  auth: async function (ctx, next) {
-    if (ctx.state.user) {
-      ctx.user = await User.findById(ctx.state.user._id);
-    } else {
-      ctx.user = null;
-    }
-
-    return next();
-  },
-};
+}
