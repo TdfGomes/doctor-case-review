@@ -8,6 +8,6 @@ const conditionSchema = Schema(
   { timestamps: true }
 )
 
-const Condition = model('Condition', conditionSchema, 'condition')
+const Condition = model('Condition', conditionSchema, 'conditions')
 
 module.exports = { Condition }

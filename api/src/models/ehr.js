@@ -5,7 +5,7 @@ const ehrSchema = Schema(
     _id: Schema.Types.ObjectId,
     doctorId: { type: Schema.Types.ObjectId, ref: 'Doctor' },
     conditionId: { type: String, ref: 'Condition' },
-    case: { type: Schema.Types.ObjectId, ref: 'Case' },
+    caseId: { type: Schema.Types.ObjectId, ref: 'Case' },
   },
   { timestamps: true }
 )

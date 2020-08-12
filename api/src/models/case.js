@@ -8,6 +8,6 @@ const caseSchema = Schema(
   { timestamps: true }
 )
 
-const Case = model('Case', caseSchema, 'case')
+const Case = model('Case', caseSchema, 'cases')
 
 module.exports = { Case }
