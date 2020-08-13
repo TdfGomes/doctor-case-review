@@ -1,6 +1,7 @@
 [
   {
-    "username": "JohnDoe",
+    "fullname": "Dr. John Doe",
+    "username": "johndoe",
     "password": "8eb539099e26d214:e6acf67f47dde23a9d4993d59cb99fd1b4c4deb6348712ff6ca6f70bde4f8b5688a613b78343b6b736e621fb913f3af2001d689c14d16fa9669b2064f2e5d8b2"
   }
 ]
