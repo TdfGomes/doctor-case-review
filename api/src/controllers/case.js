@@ -8,8 +8,8 @@ module.exports = {
       res.status(200).send(cases)
       next()
     } catch (error) {
-      console.log(error.message)
-      res.sendStatus(500) && next(error)
+      console.log('CASES ==> ', error.message)
+      next(error)
     }
   },
 }

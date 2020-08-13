@@ -8,8 +8,8 @@ module.exports = {
       res.status(200).send(conditions)
       next()
     } catch (error) {
-      console.log(error.message)
-      res.sendStatus(500) && next(error)
+      console.log('CONDITIONS ==>', error.message)
+      next(error)
     }
   },
 }

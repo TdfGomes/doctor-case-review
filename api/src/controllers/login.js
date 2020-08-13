@@ -1,21 +1,22 @@
 const { getDoctorByUserName } = require('../services/doctor')
 const { generateToken } = require('../services/auth')
 const { verify } = require('../utils/hashPwd')
+const ApiError = require('../utils/error')
 
 module.exports = {
   login: async (req, res, next) => {
     const { username, password } = req.body
 
-    if (!username || !password) {
-      return res.status(422).send('Required Fields')
-    }
-
     try {
+      if (!username || !password) {
+        throw new ApiError('UNPROCESSABLE_ENTITY: Required fields')
+      }
+
       const doctor = await getDoctorByUserName(username)
       const matchPassword = doctor && (await verify(password, doctor.password))
 
       if (!matchPassword || !doctor) {
-        return res.status(422).send('Invalid Credentials')
+        throw new ApiError('UNPROCESSABLE_ENTITY: Invalid credentials')
       }
 
       const token = await generateToken({ ...doctor })
@@ -23,8 +24,8 @@ module.exports = {
       res.status(200).send({ token })
       next()
     } catch (error) {
-      console.log(error.message)
-      res.sendStatus(500) && next(error)
+      console.log('LOGIN ===>', error.message)
+      next(error)
     }
   },
 }

@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const { errorHandler } = require('./middleware')
 const http = require('http')
 const routes = require('./routes')
 const dbConnect = require('./dbConnect')
@@ -10,10 +11,11 @@ module.exports = function server() {
   console.log('creating server... 🔨')
 
   function createServer() {
-    app.use(bodyParser.json())
-    app.use(bodyParser.urlencoded({ extended: true }))
-
-    app.use('/api', routes())
+    app
+      .use(bodyParser.urlencoded({ extended: true }))
+      .use(bodyParser.json())
+      .use('/api', routes())
+      .use(errorHandler)
 
     const httpServer = http.createServer(app)
 

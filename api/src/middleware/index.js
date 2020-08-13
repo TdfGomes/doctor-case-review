@@ -1,3 +1,4 @@
 module.exports = {
-  ...require("./auth"),
-};
+  ...require('./auth'),
+  ...require('./handleError'),
+}
