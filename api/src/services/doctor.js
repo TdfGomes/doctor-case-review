@@ -10,7 +10,7 @@ module.exports = {
       }
       return doctor
     } catch (error) {
-      throw new ApiError(`INTERNAL_SERVER_ERROR: ${error.message}`)
+      throw new ApiError(error.message)
     }
   },
 }
