@@ -15,6 +15,10 @@ module.exports = {
       const doctor = await getDoctorByUserName(username)
       const matchPassword = doctor && (await verify(password, doctor.password))
 
+      if (!doctor) {
+        throw new ApiError('NOT_FOUND: User not found')
+      }
+
       if (!matchPassword || !doctor) {
         throw new ApiError('UNPROCESSABLE_ENTITY: Invalid credentials')
       }

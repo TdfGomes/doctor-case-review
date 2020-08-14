@@ -6,11 +6,11 @@ module.exports = {
     try {
       const doctor = await Doctor.findOne({ username }).select('+password')
       if (!doctor) {
-        throw new Error('NOT_FOUND: User not found')
+        return null
       }
       return doctor
     } catch (error) {
-      throw new ApiError(error.message)
+      throw new ApiError(`INTERNAL_SERVER_ERROR: ${error.message}`)
     }
   },
 }
