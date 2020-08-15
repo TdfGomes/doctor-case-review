@@ -11,7 +11,7 @@ import ConditonItem from "./ConditionItem";
 
 function Conditons() {
   const [state, dispatch] = useAppState();
-  const { data, error, isFetching } = useConditions();
+  const { data, error, isFetching } = useConditions(state.);
 
   const classes = useStyles();
 
