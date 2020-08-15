@@ -35,9 +35,10 @@ function Header() {
   const classes = useStyles();
 
   return (
-    <AppBar position="static" className={classes.appBar}>
+    <AppBar position="sticky" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <Username className={classes.headerItem} />
+        {"|"}
         <Logout className={classes.headerItem} />
       </Toolbar>
     </AppBar>

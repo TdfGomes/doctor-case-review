@@ -26,6 +26,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   headerItem: {
     textTransform: "uppercase",
+    "&:first-child": {
+      marginRight: 8,
+    },
   },
   conditionBox: {
     border: `1px solid ${theme.palette.primary.light}`,
@@ -43,23 +46,12 @@ export const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
   },
-
-  listItem: {
-    "& a": {
-      textDecoration: "none",
-      color: theme.palette.text.primary,
-      transition: `color ${theme.transitions.duration.standard} ${theme.transitions.easing.easeInOut}`,
-      "&:hover": {
-        color: theme.palette.primary.light,
-      },
-    },
+  btnWrapper: {
+    marginTop: 35,
+    marginBottom: 35,
+    textAlign: "right",
   },
-  addNew: {
-    backgroundColor: theme.palette.grey["100"],
-    padding: "5px 15px",
-    border: `1px solid ${theme.palette.grey["300"]}`,
-  },
-  addNewBtn: {
-    marginLeft: 5,
+  alertIcon: {
+    fontSize: 55,
   },
 }));
