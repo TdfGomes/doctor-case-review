@@ -5,6 +5,7 @@ import ProtectedRoute from "../ProtectedRoute";
 
 import Ehr from "../Ehr";
 import Login from "../Login";
+import Header from "../Header";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Login} />
             <ProtectedRoute path="/ehr">
+              <Header />
               <Ehr />
             </ProtectedRoute>
           </Switch>
