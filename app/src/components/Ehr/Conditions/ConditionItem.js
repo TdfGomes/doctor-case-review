@@ -2,12 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 
-import { useStyles, useAppState } from "../../../hooks";
+import { useStyles } from "../../../hooks";
 import { ACTIONS } from "../../Store";
 
-function ConditionItem({ condition, id, onClick, isSelected }) {
+function ConditionItem({ condition, id, isSelected, dispatch }) {
   const classes = useStyles();
-  const [, dispatch] = useAppState();
 
   const className = !isSelected
     ? `${classes.conditionItem}`
@@ -16,7 +15,6 @@ function ConditionItem({ condition, id, onClick, isSelected }) {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch({ type: ACTIONS.SELECT_CONDITION, conditionId: id });
-    return onClick(id);
   };
 
   return (
@@ -33,7 +31,7 @@ function ConditionItem({ condition, id, onClick, isSelected }) {
 ConditionItem.propTypes = {
   id: PropTypes.string.isRequired,
   condition: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
   isSelected: PropTypes.bool.isRequired,
 };
 

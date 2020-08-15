@@ -1,23 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
 
-import { useStyles, useConditions } from "../../../hooks";
+import { useStyles, useConditions, useAppState } from "../../../hooks";
 
 import ConditonItem from "./ConditionItem";
 
 function Conditons() {
-  const [selectedCondition, setCondition] = useState(null);
+  const [state, dispatch] = useAppState();
   const { data, error, isFetching } = useConditions();
 
   const classes = useStyles();
-
-  const handleClick = (id) => {
-    setCondition(id);
-  };
 
   if (isFetching) return <CircularProgress />;
   if (error) return <Alert severity="error">{error}</Alert>;
@@ -34,8 +30,8 @@ function Conditons() {
               key={_id}
               id={_id}
               condition={`${description} (${_id})`}
-              isSelected={selectedCondition === _id}
-              onClick={handleClick}
+              isSelected={state.cases.conditionId === _id}
+              dispatch={dispatch}
             />
           );
         })}

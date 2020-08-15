@@ -7,6 +7,8 @@ export const ACTIONS = Object.freeze({
   LOGOUT: "@APP/LOGOUT",
   GET_CASES: "@APP/GET_CASES",
   SELECT_CONDITION: "@APP/SELECT_CONDITION",
+  POST_EHR: "@APP/POST_EHR",
+  CURRENT_CASE: "@APP/CURRENT_CASE",
 });
 
 function appReducer(state, action) {
@@ -31,15 +33,36 @@ function appReducer(state, action) {
     case ACTIONS.GET_CASES:
       return {
         ...state,
-        cases: action.cases,
+        cases: {
+          ...state.cases,
+          cases: action.cases,
+          total: action.cases.length,
+        },
+      };
+    case ACTIONS.CURRENT_CASE:
+      return {
+        ...state,
+        cases: {
+          ...state.cases,
+          caseId: action.caseId,
+          conditionId: null,
+        },
       };
     case ACTIONS.SELECT_CONDITION:
       const { conditionId } = action;
       return {
         ...state,
-        ehr: {
-          ...state.ehr,
+        cases: {
+          ...state.cases,
           conditionId,
+        },
+      };
+    case ACTIONS.POST_EHR:
+      return {
+        ...state,
+        cases: {
+          ...state.cases,
+          current: state.cases.current + 1,
         },
       };
 
@@ -53,8 +76,10 @@ const initialState = {
     isLogedin: false,
     name: null,
   },
-  cases: [],
-  ehr: {
+  cases: {
+    cases: [],
+    current: 0,
+    total: null,
     conditionId: null,
     caseId: null,
   },

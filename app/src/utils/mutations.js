@@ -23,28 +23,9 @@ export async function requestLogin({ email, password }) {
   }
 }
 
-export async function createUser({ name, email, password }) {
-  const body = JSON.stringify({ name, email, password });
-
-  const options = {
-    ...DEFAULT_OPTIONS,
-    method: "POST",
-    body,
-  };
-
-  try {
-    const restult = await fetch(`${API_URL}/signup`, options);
-    const user = await restult.json();
-
-    return user;
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-export async function createProject({ title }) {
+export async function createEhr({ conditionId, caseId }) {
   const token = localStorage.getItem("token");
-  const body = JSON.stringify({ title });
+  const body = JSON.stringify({ conditionId, caseId });
 
   const options = {
     ...DEFAULT_OPTIONS,
@@ -57,40 +38,11 @@ export async function createProject({ title }) {
   };
 
   try {
-    const restult = await fetch(`${API_URL}/projects`, options);
-    const project = await restult.json();
+    const restult = await fetch(`${API_URL}/ehr`, options);
+    const ehr = await restult.json();
 
-    return project;
+    return ehr;
   } catch (e) {
     console.error(e);
   }
 }
-
-export const createTodo = (projectId) => async ({ title }) => {
-  const token = localStorage.getItem("token");
-  const body = JSON.stringify({ title });
-
-  const options = {
-    ...DEFAULT_OPTIONS,
-    method: "POST",
-    headers: {
-      ...DEFAULT_OPTIONS.headers,
-      Authorization: `Bearer ${token}`,
-    },
-    body,
-  };
-
-  console.log(options);
-
-  try {
-    const restult = await fetch(
-      `${API_URL}/projects/${projectId}/todos`,
-      options
-    );
-    const todo = await restult.json();
-
-    return todo;
-  } catch (e) {
-    console.error(e);
-  }
-};
