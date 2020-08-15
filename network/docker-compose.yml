@@ -53,16 +53,17 @@ services:
         WAIT_HOSTS: database:27017
     ports:
         - 8080:8080
-  # app:
-  #   stdin_open: true
-  #   tty: true
-  #   build:
-  #     context: ../app
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ../app/src/:/home/node/app/src
-  #   environment:
-  #       NODE_ENV: development
-  #   ports:
-  #     - 3000:3000
+  app:
+    stdin_open: true
+    tty: true
+    restart: always
+    build:
+      context: ../app
+      dockerfile: Dockerfile
+    volumes:
+      - ../app/src/:/home/node/app/src
+    environment:
+        NODE_ENV: development
+    ports:
+      - 3000:3000
 
