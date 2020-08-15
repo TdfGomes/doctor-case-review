@@ -1,5 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import { Switch, useRouteMatch, useHistory } from "react-router-dom";
+import {
+  Switch,
+  useRouteMatch,
+  useHistory,
+  useLocation,
+  Redirect,
+} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
@@ -8,24 +14,24 @@ import ProtectedRoute from "../ProtectedRoute";
 import Conditons from "./Conditions";
 import Case from "./Case";
 import NextCase from "./NextCase";
-import AlertSuccess from "./AlertSuccess";
 
 import { ACTIONS } from "../Store";
 
 import { useStyles, useCases, useAppState } from "../../hooks";
 
 function Ehr() {
-  const [state, dispatch] = useAppState();
-  const { data, error, isFetching } = useCases(state.cases.cases);
   const { path } = useRouteMatch();
   const history = useHistory();
+  const location = useLocation();
+  const [state, dispatch] = useAppState();
+  const { data, error, isFetching } = useCases(state.cases.cases);
   const classes = useStyles();
   const cases = useRef(state.cases);
 
   useEffect(() => {
     if (data) {
       dispatch({ type: ACTIONS.GET_CASES, cases: data });
-      const nextCase = data[cases.current.current]._id;
+      const nextCase = data[cases.current.current]?._id;
       history.push(`${path}/${nextCase}`);
     }
   }, [data, dispatch, history, path, cases]);
@@ -51,7 +57,12 @@ function Ehr() {
             </Grid>
           </>
         ) : (
-          <AlertSuccess />
+          <Redirect
+            to={{
+              pathname: "/success",
+              state: { from: location },
+            }}
+          />
         )}
       </Grid>
     </>

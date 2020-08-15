@@ -6,6 +6,7 @@ import ProtectedRoute from "../ProtectedRoute";
 import Ehr from "../Ehr";
 import Login from "../Login";
 import Header from "../Header";
+import AlertSuccess from "../Ehr/AlertSuccess";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
             <ProtectedRoute path="/ehr">
               <Header />
               <Ehr />
+            </ProtectedRoute>
+            <ProtectedRoute path="/success">
+              <AlertSuccess />
             </ProtectedRoute>
           </Switch>
         </div>
