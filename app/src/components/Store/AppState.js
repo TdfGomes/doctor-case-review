@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useReducer } from "react";
 
 export const AppStateContext = React.createContext();
 
@@ -86,8 +86,15 @@ const initialState = {
 };
 
 export function AppStateProvider({ children }) {
-  const [state, dispatch] = React.useReducer(appReducer, initialState);
-  const value = React.useMemo(() => [state, dispatch], [state]);
+  const presistedState =
+    JSON.parse(localStorage.getItem("state")) || initialState;
+  console.log("presistedState", presistedState);
+
+  const [state, dispatch] = useReducer(appReducer, presistedState);
+  localStorage.setItem("state", JSON.stringify(state));
+
+  const value = useMemo(() => [state, dispatch], [state]);
+
   return (
     <AppStateContext.Provider value={value}>
       {children}
