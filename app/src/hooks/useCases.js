@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { API_URL, DEFAULT_OPTIONS } from "../utils/constants";
 
-const getCases = async () => {
+const getCases = async (_, cases) => {
   try {
     const token = localStorage.getItem("token");
 
@@ -13,15 +13,18 @@ const getCases = async () => {
       },
     };
 
-    const result = await fetch(`${API_URL}/cases`, options);
-    const data = await result.json();
+    if (!cases.length) {
+      const result = await fetch(`${API_URL}/cases`, options);
+      const data = await result.json();
+      return data;
+    }
 
-    return data;
+    return cases;
   } catch (e) {
     console.error(e);
   }
 };
 
-export function useCases() {
-  return useQuery("cases", getCases);
+export function useCases(cases) {
+  return useQuery(["cases", cases], getCases);
 }

@@ -15,8 +15,8 @@ import { ACTIONS } from "../Store";
 import { useStyles, useCases, useAppState } from "../../hooks";
 
 function Ehr() {
-  const { data, error, isFetching } = useCases();
   const [state, dispatch] = useAppState();
+  const { data, error, isFetching } = useCases(state.cases.cases);
   const { path } = useRouteMatch();
   const history = useHistory();
   const classes = useStyles();
