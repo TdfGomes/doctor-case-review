@@ -5,6 +5,7 @@ export const useStyles = makeStyles((theme) => ({
     minHeight: "100vh",
   },
   loginButton: {
+    width: "100%",
     marginTop: 35,
     marginBottom: 15,
   },

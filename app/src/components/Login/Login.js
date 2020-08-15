@@ -1,6 +1,7 @@
 import React, { Fragment, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation } from "react-query";
+import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
@@ -85,15 +86,16 @@ function Login() {
                 fullWidth
                 onChange={handleOnChange}
               />
-              <Button
-                className={classes.loginButton}
-                variant="contained"
-                color="primary"
-                fullWidth
-                disableRipple
-                type="submit">
-                Login
-              </Button>
+              <Box className={classes.loginButton}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  disableRipple
+                  type="submit">
+                  Login
+                </Button>
+              </Box>
               {error && <Alert severity="error">{error}</Alert>}
             </Grid>
           </Paper>
