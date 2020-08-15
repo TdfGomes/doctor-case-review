@@ -5,7 +5,7 @@ module.exports = {
     if (error instanceof ApiError) {
       const { statusCode, message } = error
       res.status(statusCode).send({
-        name: error.name,
+        error: error.name,
         message,
         statusCode,
       })

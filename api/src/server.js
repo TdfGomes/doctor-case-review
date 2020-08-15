@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const { errorHandler } = require('./middleware')
 const http = require('http')
 const routes = require('./routes')
@@ -12,6 +13,7 @@ module.exports = function server() {
 
   function createServer() {
     app
+      .use(cors())
       .use(bodyParser.urlencoded({ extended: true }))
       .use(bodyParser.json())
       .use('/api', routes())

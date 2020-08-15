@@ -25,7 +25,7 @@ module.exports = {
 
       const token = await generateToken({ ...doctor })
 
-      res.status(200).send({ token })
+      res.status(200).send({ token, doctor: doctor.fullname })
       next()
     } catch (error) {
       console.log('LOGIN ===>', error.message)
