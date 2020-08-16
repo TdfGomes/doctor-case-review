@@ -7,13 +7,18 @@ module.exports = {
       const { caseId, conditionId } = req.body
       const doctorId = req.user._doc._id
 
+      const requiredFields = ['caseId', 'conditionId']
+
       if (!Object.values(req.body).length) {
         throw new ApiError(
           `UNPROCESSABLE_ENTITY: caseId and condidionId are required fields`
         )
       }
 
-      Object.keys(req.body).forEach((field) => {
+      requiredFields.forEach((field) => {
+        if (!Object.keys(req.body).includes(field)) {
+          throw new ApiError(`UNPROCESSABLE_ENTITY: ${field} is required`)
+        }
         if (!req.body[field]) {
           throw new ApiError(`UNPROCESSABLE_ENTITY: ${field} is required`)
         }
