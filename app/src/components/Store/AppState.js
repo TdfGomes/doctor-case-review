@@ -8,7 +8,9 @@ export const ACTIONS = Object.freeze({
   GET_CASES: "@APP/GET_CASES",
   SELECT_CONDITION: "@APP/SELECT_CONDITION",
   POST_EHR: "@APP/POST_EHR",
+  POST_EHR_FAILED: "@APP/POST_EHR_FAILED",
   CURRENT_CASE: "@APP/CURRENT_CASE",
+  ERROR_CLOSE: "@APP/ERROR_CLOSE",
 });
 
 function appReducer(state, action) {
@@ -63,6 +65,33 @@ function appReducer(state, action) {
         cases: {
           ...state.cases,
           current: state.cases.current + 1,
+          error: {
+            open: false,
+            message: null,
+          },
+        },
+      };
+    case ACTIONS.POST_EHR_FAILED:
+      return {
+        ...state,
+        cases: {
+          ...state.cases,
+          error: {
+            open: true,
+            message: action.error,
+          },
+          conditionId: null,
+        },
+      };
+    case ACTIONS.ERROR_CLOSE:
+      return {
+        ...state,
+        cases: {
+          ...state.cases,
+          error: {
+            open: false,
+            message: null,
+          },
         },
       };
 
@@ -82,6 +111,10 @@ const initialState = {
     total: null,
     conditionId: null,
     caseId: null,
+    error: {
+      open: false,
+      message: null,
+    },
   },
 };
 

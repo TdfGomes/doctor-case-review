@@ -7,6 +7,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+import Snackbar from "@material-ui/core/Snackbar";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
 
@@ -42,6 +43,14 @@ function Ehr() {
   return (
     <>
       <Grid container className={classes.padH24} spacing={6}>
+        {state.cases.error.open && (
+          <Snackbar
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+            open={state.cases.error.open}
+            onClose={() => dispatch({ type: ACTIONS.ERROR_CLOSE })}>
+            <Alert severity="error">{state.cases.error.message}</Alert>
+          </Snackbar>
+        )}
         {state.cases.current < state.cases.total ? (
           <>
             <Grid item xs={7}>

@@ -41,6 +41,8 @@ export async function createEhr({ conditionId, caseId }) {
     const restult = await fetch(`${API_URL}/ehr`, options);
     const ehr = await restult.json();
 
+    if (ehr.error) return ehr;
+
     return ehr;
   } catch (e) {
     console.error(e);

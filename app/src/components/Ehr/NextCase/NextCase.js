@@ -22,10 +22,16 @@ function NextCase() {
     if (caseId && conditionId) {
       if (current < total) {
         try {
-          await mutate({
+          const ehr = await mutate({
             caseId,
             conditionId,
           });
+          console.log("EHR====> ", ehr);
+          if (ehr.error)
+            return dispatch({
+              type: ACTIONS.POST_EHR_FAILED,
+              error: ehr.message,
+            });
           dispatch({ type: ACTIONS.POST_EHR });
         } catch (error) {
           console.error(error);

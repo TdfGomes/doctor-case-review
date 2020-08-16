@@ -9,10 +9,11 @@ const statusList = Object.freeze({
 class ApiError extends Error {
   constructor(message) {
     super(message)
+
     const [status, msg] = message.split(':')
 
     this.name = this.constructor.name
-    this.message = msg ? msg.trim() : status
+    this.message = status.includes('E1100') ? status : msg ? msg.trim() : status
     this.statusCode = statusList[status] || 500
 
     Error.captureStackTrace(this, ApiError)
