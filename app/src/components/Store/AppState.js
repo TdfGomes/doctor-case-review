@@ -14,7 +14,6 @@ export const ACTIONS = Object.freeze({
 });
 
 function appReducer(state, action) {
-  console.log({ state, action });
   switch (action.type) {
     case ACTIONS.LOGIN:
       return {
@@ -33,13 +32,13 @@ function appReducer(state, action) {
         },
       };
     case ACTIONS.GET_CASES:
-      const nonUpDatedCases = action.cases.filter((c) => !c.ehrId);
+      const nonReviewedCases = action.cases.filter((c) => !c.ehrId);
       return {
         ...state,
         cases: {
           ...state.cases,
-          cases: nonUpDatedCases,
-          total: nonUpDatedCases.length,
+          cases: nonReviewedCases,
+          total: nonReviewedCases.length,
         },
       };
     case ACTIONS.CURRENT_CASE:
