@@ -1,4 +1,4 @@
-const { Ehr } = require('../models')
+const { Ehr, Case } = require('../models')
 const { Types } = require('mongoose')
 const ApiError = require('../utils/error')
 
@@ -13,6 +13,8 @@ module.exports = {
       })
 
       await ehr.save()
+
+      await Case.findByIdAndUpdate(caseId, { ehrId: ehr._id })
 
       return ehr
     } catch (error) {

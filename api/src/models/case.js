@@ -4,6 +4,7 @@ const caseSchema = Schema(
   {
     _id: Schema.Types.ObjectId,
     description: { type: String, require: true },
+    ehrId: { type: Schema.Types.ObjectId, ref: 'Ehr' },
   },
   { timestamps: true }
 )

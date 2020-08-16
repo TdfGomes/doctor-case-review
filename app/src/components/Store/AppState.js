@@ -33,12 +33,13 @@ function appReducer(state, action) {
         },
       };
     case ACTIONS.GET_CASES:
+      const nonUpDatedCases = action.cases.filter((c) => !c.ehrId);
       return {
         ...state,
         cases: {
           ...state.cases,
-          cases: action.cases,
-          total: action.cases.length,
+          cases: nonUpDatedCases,
+          total: nonUpDatedCases.length,
         },
       };
     case ACTIONS.CURRENT_CASE:
