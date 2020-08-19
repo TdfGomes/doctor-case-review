@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npm audit fix",
+    "test": "./node_modules/.bin/jest",
     "test:watch": "./node_modules/.bin/jest --watch",
     "start": "pm2 start index.js --watch --time && pm2 logs",
     "stop": "pm2 stop all"
