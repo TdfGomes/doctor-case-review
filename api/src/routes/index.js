@@ -8,10 +8,10 @@ module.exports = function () {
   const router = express.Router()
 
   router
-    .use(loginRoute())
     .use(conditionsRoute())
     .use(casesRoute())
     .use(ehrRoute())
+    .use(loginRoute())
 
   return router
 }

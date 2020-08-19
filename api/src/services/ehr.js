@@ -18,7 +18,7 @@ module.exports = {
 
       return ehr
     } catch (error) {
-      console.log('SERVICE ERROR ===>', error.message)
+      console.error('SERVICE ERROR ===>', error.message)
       throw new ApiError(error.message)
     }
   },

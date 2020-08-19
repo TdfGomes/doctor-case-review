@@ -1,4 +1,4 @@
-const ehrService = require('../services/ehr')
+const { createEhr: createEhrService } = require('../services/ehr')
 const ApiError = require('../utils/error')
 
 module.exports = {
@@ -24,12 +24,12 @@ module.exports = {
         }
       })
 
-      const ehr = await ehrService.createEhr({ doctorId, caseId, conditionId })
+      const ehr = await createEhrService({ doctorId, caseId, conditionId })
 
       res.status(200).send(ehr)
       next()
     } catch (error) {
-      console.log('EHR ===> ', error.message)
+      console.error('EHR ===> ', error.message)
       next(error)
     }
   },

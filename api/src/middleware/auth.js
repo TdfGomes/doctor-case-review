@@ -3,7 +3,7 @@ const ApiError = require('../utils/error')
 const secret = process.env.JWT_SECRET
 
 module.exports = {
-  authenticateToken: (req, res, next) => {
+  authenticateToken: (req, _, next) => {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
     if (token == null) {
@@ -11,7 +11,6 @@ module.exports = {
     }
 
     jwt.verify(token, secret, (error, user) => {
-      console.log(error)
       if (error) {
         throw new ApiError('FORBIDDEN')
       }

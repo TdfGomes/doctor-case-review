@@ -6,7 +6,7 @@ module.exports = {
     try {
       const cases = await Case.find()
       if (!cases) {
-        throw new Error('NOT_FOUND: No cases found')
+        return null
       }
       return cases
     } catch (error) {

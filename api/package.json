@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npm audit fix",
+    "test:watch": "./node_modules/.bin/jest --watch",
     "start": "pm2 start index.js --watch --time && pm2 logs",
     "stop": "pm2 stop all"
   },
@@ -21,5 +22,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.5",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "jest": "^26.4.0"
   }
 }
