@@ -1,5 +1,5 @@
 const { Condition } = require('../models')
-const ApiError = require('../utils/error')
+const { ApiError } = require('../utils/error')
 
 module.exports = {
   getAllCoditions: async () => {

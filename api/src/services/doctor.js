@@ -1,5 +1,5 @@
 const { Doctor } = require('../models')
-const ApiError = require('../utils/error')
+const { ApiError } = require('../utils/error')
 
 module.exports = {
   getDoctorByUserName: async (username) => {

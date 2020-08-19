@@ -1,6 +1,6 @@
 const { Ehr, Case } = require('../models')
 const { Types } = require('mongoose')
-const ApiError = require('../utils/error')
+const { ApiError } = require('../utils/error')
 
 module.exports = {
   createEhr: async ({ doctorId, caseId, conditionId }) => {
