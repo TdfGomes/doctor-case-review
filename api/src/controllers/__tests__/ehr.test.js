@@ -1,6 +1,6 @@
 const { createEhr } = require('../')
 const { createEhr: createEhrService } = require('../../services/ehr')
-const ApiError = require('../../utils/error')
+const { ApiError } = require('../../utils/error')
 const { mockResponse } = require('../../utils/test-utils')
 
 jest.mock('../../services/ehr')

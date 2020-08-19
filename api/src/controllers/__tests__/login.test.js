@@ -3,7 +3,7 @@ const { mockResponse } = require('../../utils/test-utils')
 const { getDoctorByUserName } = require('../../services/doctor')
 const { generateToken } = require('../../services/auth')
 const { verify } = require('../../utils/hashPwd')
-const ApiError = require('../../utils/error')
+const { ApiError } = require('../../utils/error')
 
 jest.mock('../../services/doctor')
 jest.mock('../../services/auth')

@@ -1,4 +1,4 @@
-const statusList = Object.freeze({
+const STATUS_LIST = Object.freeze({
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,
   NOT_FOUND: 404,
@@ -14,10 +14,10 @@ class ApiError extends Error {
 
     this.name = this.constructor.name
     this.message = status.includes('E1100') ? status : msg ? msg.trim() : status
-    this.statusCode = statusList[status] || 500
+    this.statusCode = Number(status) || 500
 
     Error.captureStackTrace(this, ApiError)
   }
 }
 
-module.exports = ApiError
+module.exports = { ApiError, STATUS_LIST }

@@ -1,4 +1,4 @@
-const ApiError = require('../utils/error')
+const { ApiError } = require('../utils/error')
 
 module.exports = {
   errorHandler: (error, req, res, next) => {

@@ -1,5 +1,5 @@
 const { createEhr: createEhrService } = require('../services/ehr')
-const ApiError = require('../utils/error')
+const { ApiError, STATUS_LIST } = require('../utils/error')
 
 module.exports = {
   createEhr: async (req, res, next) => {
@@ -11,16 +11,20 @@ module.exports = {
 
       if (!Object.values(req.body).length) {
         throw new ApiError(
-          `UNPROCESSABLE_ENTITY: caseId and condidionId are required fields`
+          `${STATUS_LIST.UNPROCESSABLE_ENTITY}: caseId and condidionId are required fields`
         )
       }
 
       requiredFields.forEach((field) => {
         if (!Object.keys(req.body).includes(field)) {
-          throw new ApiError(`UNPROCESSABLE_ENTITY: ${field} is required`)
+          throw new ApiError(
+            `${STATUS_LIST.UNPROCESSABLE_ENTITY}: ${field} is required`
+          )
         }
         if (!req.body[field]) {
-          throw new ApiError(`UNPROCESSABLE_ENTITY: ${field} is required`)
+          throw new ApiError(
+            `${STATUS_LIST.UNPROCESSABLE_ENTITY}: ${field} is required`
+          )
         }
       })
 

@@ -1,7 +1,7 @@
 const { getCases } = require('../')
 const { mockResponse } = require('../../utils/test-utils')
 const { getAllCases } = require('../../services/cases')
-const ApiError = require('../../utils/error')
+const { ApiError } = require('../../utils/error')
 
 jest.mock('../../services/cases')
 

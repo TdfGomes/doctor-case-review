@@ -1,7 +1,7 @@
 const { getConditions } = require('../')
 const { mockResponse } = require('../../utils/test-utils')
 const { getAllCoditions } = require('../../services/condition')
-const ApiError = require('../../utils/error')
+const { ApiError } = require('../../utils/error')
 
 jest.mock('../../services/condition')
 
