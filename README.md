@@ -13,3 +13,5 @@ This app was build with Nodejs, monogoDB and React.
 4. Then you run `docker-compose up --build` and you should have the project runing after a while.(after all instalations)
 
 5. Optionaly you can do `source ./scripts.sh` do have access to some docker utils.
+
+6. For specific app instructions you should go to [app](/app) and for specific api instructions you should go to [api](/api)
